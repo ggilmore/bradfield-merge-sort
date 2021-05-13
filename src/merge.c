@@ -10,7 +10,9 @@ The sporadic errors that I get look something like:
 merge(10702,0x700009d7f000) malloc: Incorrect checksum for freed object
 0x7fd0f2c05d80: probably modified after being freed. Corrupt value:
 0x6000000000000057 merge(10702,0x700009d7f000) malloc: *** set a breakpoint in
-malloc_error_break to debug fish: Job 1, './merge' terminated by signal SIGABRT
+malloc_error_break to debug
+
+fish: Job 1, './merge' terminated by signal SIGABRT
 (Abort)
 
 I am running on macOS if that makes a difference.
@@ -89,8 +91,8 @@ void*
 mergeSort(void* arg)
 {
 
-  SortArgs* args = (SortArgs*)arg;
-  int start = args->start, end = args->end;
+  SortArgs* a = (SortArgs*)arg;
+  int start = a->start, end = a->end;
   if (start >= end - 1) {
     return NULL;
   }
@@ -110,6 +112,7 @@ mergeSort(void* arg)
 
   pthread_t right_p;
   ThreadCreate(&right_p, NULL, &mergeSort, right);
+
   ThreadJoin(left_p, NULL);
   ThreadJoin(right_p, NULL);
 
@@ -130,8 +133,8 @@ mergeSort(void* arg)
 void*
 merge(void* arg)
 {
-  MergeArgs* args = (MergeArgs*)arg;
-  int start = args->start, middle = args->middle, end = args->end;
+  MergeArgs* a = (MergeArgs*)arg;
+  int start = a->start, middle = a->middle, end = a->end;
   int i, j, k, len;
 
   len = end - start - 1;

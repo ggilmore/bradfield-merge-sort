@@ -9,7 +9,10 @@ in  Setup.MakeJob
         [ GitHubActions.Step::{
           , name = Some "c-format"
           , uses = Some "DoozyX/clang-format-lint-action@v0.11"
-          , `with` = Some (toMap { source = ".", clangFormatVersion = "11" })
+          , `with` = Some
+              ( toMap
+                  { source = ".", clangFormatVersion = "11", style = "Mozilla" }
+              )
           }
         ]
       }

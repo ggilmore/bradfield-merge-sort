@@ -16,6 +16,7 @@ jobs:
         with:
           clangFormatVersion: '11'
           source: '.'
+          style: Mozilla
   checkPipeline:
     name: render-CI-pipeline
     runs-on: ubuntu-latest
