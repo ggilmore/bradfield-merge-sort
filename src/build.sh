@@ -3,4 +3,4 @@
 cd "$(dirname "${BASH_SOURCE[0]}")"
 set -euxo pipefail
 
-gcc -o merge merge.c
+gcc -o merge merge.c -lpthread
